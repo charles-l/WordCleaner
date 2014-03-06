@@ -1,3 +1,9 @@
+// =================================== WordCleaner ========================================== //
+// Removes swearing by replaceing it with '*', the first letter followed by '*', or toon swearing (i.e. $#*%)
+// Created by NinjaCharlie March 6, 2014
+//
+// Please excuse the swear words table...
+//
 var wordList /*AKA the bad word table*/ = ["fuck", "shit", "cunt", "bitch", "nigger", "asshole", "bullshit", "damn", "slut"]
 function getStars(word)
 {
