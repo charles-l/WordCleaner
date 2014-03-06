@@ -1,4 +1,4 @@
-var wordList = ["test", "string"]
+var wordList /*AKA the bad word table*/ = ["fuck", "shit", "cunt", "bitch", "nigger", "asshole", "bullshit", "damn", "slut"]
 function getStars(word)
 {
   var str = "";
@@ -38,19 +38,21 @@ function comicReplace(word)
 
 function cleanWords(wordList, convertFunc)
 {
-  for(var i = 0; i < wordList.length; i++)
+  for(var i = 0; i < wordList.length; i++) // Checks each word in the wordlist
   {
     var word = wordList[i];
     word = word.toLowerCase();
-    $('*').contents().filter(
+    var start = 0;
+    var end = 0;
+    $('p, a, h1, h2, h3, h4, h5, h6, span, div, b, i, s, u, block, quote, code').contents().filter(
       function() {
-        return this.nodeType == Node.TEXT_NODE && this.nodeValue.toLowerCase().indexOf(word) >= 0;
+        return this.nodeType == Node.TEXT_NODE && this.nodeValue.indexOf(word) >= 0;
       }).each(
       function() {
-        var re = new RegExp(word,"g");
-        this.nodeValue = this.nodeValue.toLowerCase().replace(re, convertFunc(word));
+        console.log(this.nodeValue);
+        var re = new RegExp(word + "(ing|er|ed|y|ty|)(s|)","ig");
+        this.nodeValue = this.nodeValue.replace(re, convertFunc(word));
       });
   }
-}
 
-$( document ).ready(cleanWords(wordList, function(word){return comicReplace(word)}))
+$( document ).ready(cleanWords(wordList, function(word){return getStars(word)}))
