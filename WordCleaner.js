@@ -5,7 +5,7 @@
 // Please excuse the swear words array...
 
 var WordCleaner = {
-  var wordList /*AKA the bad word table*/ = ["fuck", "shit", "cunt", "bitch", "nigger", "asshole", "bullshit", "damn", "slut"];
+  this.wordList /*AKA the bad word table*/ = ["fuck", "shit", "cunt", "bitch", "nigger", "asshole", "bullshit", "damn", "slut"];
   function getStars(word)
   {
     var str = "";
@@ -43,11 +43,11 @@ var WordCleaner = {
     return str;
   }
 
-  function cleanWords(wordList, convertFunc)
+  function cleanWords(this.wordList, convertFunc)
   {
-    for(var i = 0; i < wordList.length; i++) // Checks each word in the wordlist
+    for(var i = 0; i < this.wordList.length; i++) // Checks each word in the wordlist
     {
-      var word = wordList[i];
+      var word = this.wordList[i];
       word = word.toLowerCase();
       var start = 0;
       var end = 0;
