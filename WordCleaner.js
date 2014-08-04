@@ -25,38 +25,19 @@ function getStarsAndFirstLetter(word)
   return str;
 }
 
-function comicReplace(word)
-{
-  str = "";
-  for(var i = 0; i < word.length; i++)
-  {
-    if(word[i] == "s")
-      str += "$";
-    else if(word[i] == "a")
-      str += "%";
-    else if(word[i] == "e" || word[i] == "i" || word[i] == "o" || word[i] == "u" || word[i] == "y")
-      str += "*";
-    else
-      str += "#";
-  }
-  return str;
-}
-
 function cleanWords(wordList, convertFunc)
 {
   for(var i = 0; i < wordList.length; i++) // Checks each word in the wordlist
   {
     var word = wordList[i];
+    var re = new RegExp(word,"ig");
     word = word.toLowerCase();
-    var start = 0;
-    var end = 0;
     $('p, a, h1, h2, h3, h4, h5, h6, span, div, b, i, s, u, blockquote, code').contents().filter(
         function() {
-          return this.nodeType == Node.TEXT_NODE && this.nodeValue.indexOf(word) >= 0;
+          return this.nodeType == Node.TEXT_NODE;
         }).each(
           function() {
             console.log(this.nodeValue);
-            var re = new RegExp(word + "(ing|er|ed|y|ty|)(s|)","ig");
             this.nodeValue = this.nodeValue.replace(re, convertFunc(word));
           });
   }
