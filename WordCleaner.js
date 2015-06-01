@@ -4,7 +4,7 @@
 //
 // Please excuse the swear words array...
 
-wordList /*AKA the bad word table*/ = ["fuck", "shit", "cunt", "bitch", "nigger", "asshole", "bullshit", "damn", "slut"];
+wordList /*AKA the bad word table*/ = ["fuck", "shit", "cunt", "bitch", "nigger", "asshole","bullshit", "damn", "slut", "whore", "fag"];
 function getStars(word)
 {
   var str = "";
