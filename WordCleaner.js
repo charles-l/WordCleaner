@@ -5,6 +5,7 @@
 // Please excuse the swear words array...
 
 wordList /*AKA the bad word table*/ = ["fuck", "shit", "cunt", "bitch", "nigger", "asshole","bullshit", "damn", "slut", "whore", "fag"];
+textElements = 'p, a, h1, h2, h3, h4, h5, h6, span, div, b, i, s, u, blockquote, code';
 function getStars(word)
 {
   var str = "";
@@ -32,16 +33,25 @@ function cleanWords(wordList, convertFunc)
     var word = wordList[i];
     var re = new RegExp(word,"ig");
     word = word.toLowerCase();
-    $('p, a, h1, h2, h3, h4, h5, h6, span, div, b, i, s, u, blockquote, code').contents().filter(
+    $(textElements).contents().filter(
         function() {
           return this.nodeType == Node.TEXT_NODE;
         }).each(
           function() {
-            console.log(this.nodeValue);
             this.nodeValue = this.nodeValue.replace(re, convertFunc(word));
           });
   }
 }
 
+$('body').ready(function() {
+	$('body').css('display', 'none')
+});
 
-$( document ).ready(cleanWords(wordList, function(word){return getStars(word)}))
+$(document).ready(function(){
+    $('body').fadeIn(100);
+    cleanWords(wordList,
+           function(word)
+           {
+               return getStars(word);
+           });
+});
